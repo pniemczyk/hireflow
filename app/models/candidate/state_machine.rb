@@ -8,10 +8,10 @@ class Candidate::StateMachine
   state :ready_for_evaluating                 # cv_raw_text present, queued for evaluation
   state :evaluating                           # Claude is evaluating the CV against the scenario
   state :evaluated                            # evaluation stored; awaiting interview or decision
-  state :interviewing                         # Stage 3 — AI interview loop (future)
-  state :completed                            # interview finished (future)
-  state :accepted                             # recruiter decision (future)
-  state :rejected                             # recruiter decision or auto-fail (future)
+  state :interviewing                         # Stage 2 — AI interview loop in progress
+  state :completed                            # interview finished; awaiting final decision
+  state :accepted                             # auto-accepted from interview summary or recruiter decision
+  state :rejected                             # auto-rejected from CV fail or interview failure threshold
 
   # ── Transitions ───────────────────────────────────────────────────────────────
   transition from: :cv_processing,        to: :ready_for_evaluating

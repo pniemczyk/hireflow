@@ -1,0 +1,11 @@
+first_ai_message:
+  conversation: active_interview
+  role: "ai"
+  content: "Welcome! Let's start with your Rails experience."
+  position: 1
+
+first_candidate_message:
+  conversation: active_interview
+  role: "candidate"
+  content: "I have 6 years of production Rails experience."
+  position: 2

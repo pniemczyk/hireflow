@@ -12,12 +12,22 @@ class Candidate < ApplicationRecord
 
   # ── Associations ──────────────────────────────────────────────────────────────
   belongs_to :job
+  has_one  :conversation, dependent: :destroy
+  has_many :messages, through: :conversation
   has_one_attached :cv_file
 
   # ── Parsed evaluation result (stored as JSON text) ────────────────────────────
   def evaluation
     return nil if evaluation_result.blank?
     JSON.parse(evaluation_result, symbolize_names: true)
+  rescue JSON::ParserError
+    nil
+  end
+
+  # ── Parsed interview summary (stored as JSON text) ────────────────────────────
+  def interview_summary_hash
+    return nil if interview_summary.blank?
+    JSON.parse(interview_summary, symbolize_names: true)
   rescue JSON::ParserError
     nil
   end

@@ -18,3 +18,19 @@ evaluated_candidate:
   cv_raw_text: "# Alice Jones\n\n5 years Rails."
   status: "evaluated"
   evaluation_result: '{"overall":"pass","score":82,"summary":"Strong fit.","gaps":[],"questions":[]}'
+
+partial_candidate:
+  job: active_job
+  name: "Carlos Ruiz"
+  email: "carlos@example.com"
+  cv_raw_text: "# Carlos Ruiz\n\n4 years Rails, no background jobs mentioned."
+  status: "evaluated"
+  evaluation_result: '{"overall":"partial","score":60,"summary":"Decent fit, gaps present.","gaps":["No background job experience"],"questions":["Describe your experience with background job processing."]}'
+
+interviewing_candidate:
+  job: active_job
+  name: "Dana Kim"
+  email: "dana@example.com"
+  cv_raw_text: "# Dana Kim\n\n5 years Rails."
+  status: "interviewing"
+  evaluation_result: '{"overall":"partial","score":65,"summary":"Good fit.","gaps":["Hotwire unclear"],"questions":["Describe your Hotwire experience."]}'

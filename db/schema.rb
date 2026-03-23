@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_03_23_124832) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_23_214107) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -57,11 +57,22 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_23_124832) do
     t.text "cv_raw_text"
     t.string "email"
     t.text "evaluation_result"
+    t.text "interview_summary"
     t.integer "job_id", null: false
     t.string "name"
     t.string "status", default: "cv_processing", null: false
     t.datetime "updated_at", null: false
     t.index ["job_id"], name: "index_candidates_on_job_id"
+  end
+
+  create_table "conversations", force: :cascade do |t|
+    t.integer "candidate_id", null: false
+    t.datetime "completed_at"
+    t.datetime "created_at", null: false
+    t.datetime "started_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.string "state", default: "in_progress", null: false
+    t.datetime "updated_at", null: false
+    t.index ["candidate_id"], name: "index_conversations_on_candidate_id", unique: true
   end
 
   create_table "jobs", force: :cascade do |t|
@@ -71,6 +82,18 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_23_124832) do
     t.string "status", default: "active", null: false
     t.string "title", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "content", null: false
+    t.integer "conversation_id", null: false
+    t.datetime "created_at", null: false
+    t.text "metadata", default: "{}"
+    t.integer "position", null: false
+    t.string "role", null: false
+    t.datetime "updated_at", null: false
+    t.index ["conversation_id", "position"], name: "index_messages_on_conversation_id_and_position", unique: true
+    t.index ["conversation_id"], name: "index_messages_on_conversation_id"
   end
 
   create_table "scenarios", force: :cascade do |t|
@@ -86,5 +109,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_23_124832) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "candidate_transitions", "candidates"
   add_foreign_key "candidates", "jobs"
+  add_foreign_key "conversations", "candidates"
+  add_foreign_key "messages", "conversations"
   add_foreign_key "scenarios", "jobs"
 end

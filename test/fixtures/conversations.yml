@@ -1,0 +1,4 @@
+active_interview:
+  candidate: evaluated_candidate
+  state: "in_progress"
+  started_at: "2026-03-23 10:00:00"

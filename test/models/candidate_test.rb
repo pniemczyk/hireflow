@@ -106,4 +106,76 @@ class CandidateTest < ActiveSupport::TestCase
     refute @candidate.valid?
     assert_includes @candidate.errors[:job], 'must exist'
   end
+
+  # ── Conversation association ──────────────────────────────────────────────────
+
+  test 'can have one conversation' do
+    @candidate.save!
+    conv = Conversation.create!(candidate: @candidate)
+    assert_equal conv, @candidate.reload.conversation
+  end
+
+  test 'has many messages through conversation' do
+    @candidate.save!
+    conv = Conversation.create!(candidate: @candidate)
+    conv.messages.create!(role: 'ai', content: 'Hi')
+    assert_equal 1, @candidate.messages.count
+  end
+
+  # ── interview_summary_hash ────────────────────────────────────────────────────
+
+  test '#interview_summary_hash returns nil when interview_summary is blank' do
+    assert_nil @candidate.interview_summary_hash
+  end
+
+  test '#interview_summary_hash parses JSON into a symbolized hash' do
+    @candidate.interview_summary = '{"overall":"pass","score":78,"summary":"Good answers.","answers":[]}'
+    result = @candidate.interview_summary_hash
+    assert_equal 'pass', result[:overall]
+    assert_equal 78,     result[:score]
+  end
+
+  test '#interview_summary_hash returns nil on malformed JSON' do
+    @candidate.interview_summary = 'not-json'
+    assert_nil @candidate.interview_summary_hash
+  end
+
+  # ── New state transitions ─────────────────────────────────────────────────────
+
+  test 'transitions from evaluated to interviewing' do
+    @candidate.save!
+    @candidate.transition_to!(:ready_for_evaluating)
+    @candidate.transition_to!(:evaluating)
+    @candidate.transition_to!(:evaluated)
+    @candidate.transition_to!(:interviewing)
+    assert_equal 'interviewing', @candidate.current_state
+  end
+
+  test 'transitions from evaluated to accepted' do
+    @candidate.save!
+    @candidate.transition_to!(:ready_for_evaluating)
+    @candidate.transition_to!(:evaluating)
+    @candidate.transition_to!(:evaluated)
+    @candidate.transition_to!(:accepted)
+    assert_equal 'accepted', @candidate.current_state
+  end
+
+  test 'transitions from evaluated to rejected' do
+    @candidate.save!
+    @candidate.transition_to!(:ready_for_evaluating)
+    @candidate.transition_to!(:evaluating)
+    @candidate.transition_to!(:evaluated)
+    @candidate.transition_to!(:rejected)
+    assert_equal 'rejected', @candidate.current_state
+  end
+
+  test 'transitions from interviewing to completed' do
+    @candidate.save!
+    @candidate.transition_to!(:ready_for_evaluating)
+    @candidate.transition_to!(:evaluating)
+    @candidate.transition_to!(:evaluated)
+    @candidate.transition_to!(:interviewing)
+    @candidate.transition_to!(:completed)
+    assert_equal 'completed', @candidate.current_state
+  end
 end
