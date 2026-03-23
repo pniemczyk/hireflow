@@ -1,24 +1,20 @@
-# README
+# Modern Applications
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+AI-powered candidate screening platform that automates pre-screening through CV upload, AI-driven interview, and scored summaries for recruiters.
 
-Things you may want to cover:
+**Pipeline:** CV Upload → CV Processing & Scoring → AI Interview → Scored Summary + Pass/Reject decision
 
-* Ruby version
+See [`IDEA.md`](./IDEA.md) for the full product spec, data model, planned routes, and AI architecture.
 
-* System dependencies
+## Setup
 
-* Configuration
+```bash
+./bin/setup   # install deps + prepare DB
+mise up       # start all services (Rails + Vite + Caddy)
+```
 
-* Database creation
+App runs at `https://apl.localhost`.
 
-* Database initialization
+## Development
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+See [`CLAUDE.md`](./CLAUDE.md) for all commands (testing, linting, database, etc.) and architecture overview.

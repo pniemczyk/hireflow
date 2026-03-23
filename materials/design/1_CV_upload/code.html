@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Aura Intelligence - CV Submission</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface-bright": "#3a3939",
+            "on-error": "#690005",
+            "on-surface-variant": "#bfc7d4",
+            "surface-container-low": "#1c1b1b",
+            "surface-container-high": "#2a2a2a",
+            "on-surface": "#e5e2e1",
+            "tertiary": "#ffb4a9",
+            "on-background": "#e5e2e1",
+            "error-container": "#93000a",
+            "inverse-on-surface": "#313030",
+            "surface-dim": "#131313",
+            "on-tertiary-fixed-variant": "#930005",
+            "on-primary-fixed-variant": "#00497d",
+            "outline-variant": "#404752",
+            "on-secondary-fixed-variant": "#005313",
+            "secondary-fixed": "#94f990",
+            "on-tertiary": "#690002",
+            "tertiary-container": "#ff5748",
+            "surface-tint": "#9ecaff",
+            "surface-container": "#201f1f",
+            "on-error-container": "#ffdad6",
+            "inverse-primary": "#0061a4",
+            "surface-variant": "#353534",
+            "tertiary-fixed-dim": "#ffb4a9",
+            "on-tertiary-fixed": "#410001",
+            "primary": "#9ecaff",
+            "error": "#ffb4ab",
+            "background": "#131313",
+            "on-primary-fixed": "#001d36",
+            "secondary-container": "#00761f",
+            "primary-fixed-dim": "#9ecaff",
+            "primary-fixed": "#d1e4ff",
+            "outline": "#89919d",
+            "on-tertiary-container": "#5e0002",
+            "on-primary-container": "#002c4f",
+            "surface-container-highest": "#353534",
+            "on-primary": "#003258",
+            "inverse-surface": "#e5e2e1",
+            "surface-container-lowest": "#0e0e0e",
+            "on-secondary-container": "#95fb92",
+            "secondary": "#78dc77",
+            "secondary-fixed-dim": "#78dc77",
+            "on-secondary": "#00390a",
+            "tertiary-fixed": "#ffdad5",
+            "primary-container": "#2196f3",
+            "surface": "#131313",
+            "on-secondary-fixed": "#002204"
+          },
+          fontFamily: {
+            "headline": ["Manrope"],
+            "body": ["Inter"],
+            "label": ["Inter"]
+          },
+          borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .aura-glow {
+      background: radial-gradient(circle at center, rgba(158, 202, 255, 0.08) 0%, transparent 70%);
+    }
+    .hide-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary/30 selection:text-primary">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#131313]/80 backdrop-blur-xl shadow-[0_8px_32px_0_rgba(0,0,0,0.36)]">
+<div class="flex justify-between items-center px-8 h-16 w-full">
+<div class="text-xl font-extrabold text-[#9ECAFF] tracking-widest font-headline">Aura Intelligence</div>
+<!-- Removed Navigation Links -->
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors cursor-pointer" data-icon="help">help</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors cursor-pointer" data-icon="notifications">notifications</button>
+<div class="h-8 w-8 rounded-full bg-surface-container-high border border-outline-variant/20 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Candidate Profile Avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBY6GzcSKuYF6FCopbGLdtdP9aGPw-nt1Qn2syevvo8lPQcFwEl3JARqPj5iDeYFqQj6FSZQjvQ4RZwula7y-l8sDosH1EiZ8QJIAxs7ZlXv0FiVEU14DBYB14lRoO0p0tqm62WD9-5jXrg52cOSj3HV2rbNk7uPvgy9D_C5ue4a-5_TsnRnu9PBojTxysgb2cdHWzmWjA-wWdv1h4ZIqVxvSf_syxGu9YJaxP5iYcBeLRvX0bZ8uzoLfEK1wjSOCzsJJ9gLNZZrmc"/>
+</div>
+</div>
+</div>
+<!-- Progress Indicator - 5% -->
+<div class="absolute bottom-0 left-0 h-[2px] w-full bg-surface-container-low">
+<div class="h-full bg-primary w-[5%] transition-all duration-1000 shadow-[0_0_8px_rgba(158,202,255,0.6)]"></div>
+</div>
+</header>
+<main class="min-h-screen pt-32 pb-24 px-6 relative overflow-hidden flex flex-col items-center">
+<!-- Background Aura -->
+<div class="absolute inset-0 aura-glow pointer-events-none"></div>
+<!-- Centered Content Wrapper -->
+<div class="w-full max-w-[800px] z-10">
+<!-- Header Section -->
+<div class="text-center mb-12">
+<div class="inline-flex items-center px-4 py-1 rounded-full bg-surface-container-low border border-outline-variant/10 text-on-surface-variant text-xs font-medium tracking-widest uppercase mb-6">
+          Phase 01: Identification
+        </div>
+<h1 class="text-4xl md:text-5xl font-headline font-bold text-on-surface tracking-tight mb-4">
+          Submit Your <span class="text-primary">Intelligence Profile</span>
+</h1>
+<p class="text-on-surface-variant text-lg max-w-xl mx-auto leading-relaxed">
+          Please upload your CV (PDF or Markdown) or paste it below to begin your evaluation.
+        </p>
+</div>
+<!-- Job Context Card -->
+<div class="bg-surface-container-low rounded-xl p-6 mb-8 flex flex-col md:flex-row items-center justify-between gap-4 border border-outline-variant/5">
+<div class="flex items-center gap-4">
+<div class="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="architecture">architecture</span>
+</div>
+<div>
+<h3 class="text-on-surface font-headline font-bold">Senior Cloud Architect</h3>
+<p class="text-on-surface-variant text-sm">Infrastructure &amp; Scalability Unit</p>
+</div>
+</div>
+<button class="px-6 py-2.5 rounded-full border border-outline-variant/30 text-on-surface text-sm font-medium hover:bg-surface-container-high transition-all active:scale-95">
+          Read More
+        </button>
+</div>
+<!-- Interaction Canvas: The Drag & Drop zone -->
+<div class="relative group">
+<!-- The main container simulating a recessed area -->
+<div class="bg-surface-container-lowest rounded-2xl min-h-[400px] flex flex-col p-8 transition-all duration-500 border border-transparent focus-within:border-primary/20 shadow-inner group-hover:shadow-[0_0_40px_rgba(158,202,255,0.03)]">
+<!-- Drop Overlay -->
+<div class="flex-1 flex flex-col">
+<div class="flex items-center gap-3 text-on-surface-variant mb-6">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="text-sm font-label uppercase tracking-widest opacity-60">Source Input</span>
+</div>
+<!-- Text Area / Drop Zone -->
+<textarea class="flex-1 bg-transparent border-none focus:ring-0 text-on-surface placeholder:text-on-surface-variant/30 resize-none font-body text-lg leading-relaxed hide-scrollbar" placeholder="Paste your CV content here or drop your file to parse..."></textarea>
+<!-- Floating Action Bar at the bottom of the canvas -->
+<div class="mt-8 flex flex-col md:flex-row items-center justify-between gap-6 pt-6 border-t border-outline-variant/5">
+<div class="flex items-center gap-6">
+<!-- File Upload Trigger -->
+<button class="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="upload_file">upload_file</span>
+<span class="text-sm font-medium">Upload PDF/MD</span>
+</button><button class="group/mic relative flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="mic">mic</span>
+<span class="text-sm font-medium">Voice</span>
+<!-- Subtle Tooltip -->
+<span class="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-surface-container-high text-[10px] text-primary border border-outline-variant/20 rounded opacity-0 group-hover/mic:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+    Speech to Text
+  </span>
+</button><div class="h-4 w-[1px] bg-outline-variant/20"></div>
+<div class="h-4 w-[1px] bg-outline-variant/20"></div>
+<!-- Token Count / Status (Mock) -->
+<div class="flex items-center gap-2">
+<div class="h-1.5 w-1.5 rounded-full bg-secondary animate-pulse"></div>
+<span class="text-xs text-on-surface-variant opacity-60">System Ready for Processing</span>
+</div>
+</div>
+<!-- Main Submit -->
+<button class="w-full md:w-auto px-10 py-4 bg-primary text-on-primary rounded-full font-headline font-bold text-base shadow-[0_8px_24px_rgba(158,202,255,0.2)] hover:shadow-[0_12px_32px_rgba(158,202,255,0.3)] hover:-translate-y-0.5 transition-all active:scale-95">
+                Submit CV
+              </button>
+</div>
+</div>
+<!-- Subtle Corner Accents -->
+<div class="absolute top-4 right-4 opacity-10 group-hover:opacity-30 transition-opacity">
+<span class="material-symbols-outlined text-4xl" data-icon="filter_center_focus">filter_center_focus</span>
+</div>
+</div>
+<!-- Helper hint -->
+<p class="mt-4 text-center text-on-surface-variant/40 text-xs">
+          Supported formats: .pdf, .md, .txt (Max 10MB)
+        </p>
+</div>
+</div>
+</main>
+<!-- Footer Gradient / Backdrop -->
+<div class="fixed bottom-0 left-0 w-full h-24 bg-gradient-to-t from-surface to-transparent pointer-events-none z-0"></div>
+</body></html>

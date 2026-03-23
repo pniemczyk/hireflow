@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Ethereal Agent</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-dim": "#131313",
+                        "on-background": "#e5e2e1",
+                        "secondary-container": "#00761f",
+                        "on-tertiary-fixed": "#410001",
+                        "on-surface-variant": "#bfc7d4",
+                        "surface": "#131313",
+                        "inverse-surface": "#e5e2e1",
+                        "tertiary": "#ffb4a9",
+                        "primary-fixed": "#d1e4ff",
+                        "tertiary-fixed-dim": "#ffb4a9",
+                        "secondary-fixed": "#94f990",
+                        "primary": "#9ecaff",
+                        "on-tertiary-container": "#5e0002",
+                        "on-secondary-fixed-variant": "#005313",
+                        "on-primary": "#003258",
+                        "on-error": "#690005",
+                        "on-primary-container": "#002c4f",
+                        "on-tertiary-fixed-variant": "#930005",
+                        "surface-container-low": "#1c1b1b",
+                        "inverse-on-surface": "#313030",
+                        "secondary-fixed-dim": "#78dc77",
+                        "tertiary-fixed": "#ffdad5",
+                        "surface-container-lowest": "#0e0e0e",
+                        "surface-bright": "#3a3939",
+                        "on-error-container": "#ffdad6",
+                        "tertiary-container": "#ff5748",
+                        "outline-variant": "#404752",
+                        "inverse-primary": "#0061a4",
+                        "on-secondary-container": "#95fb92",
+                        "surface-variant": "#353534",
+                        "surface-container-highest": "#353534",
+                        "primary-fixed-dim": "#9ecaff",
+                        "on-secondary-fixed": "#002204",
+                        "surface-container-high": "#2a2a2a",
+                        "on-tertiary": "#690002",
+                        "secondary": "#78dc77",
+                        "surface-tint": "#9ecaff",
+                        "primary-container": "#2196f3",
+                        "outline": "#89919d",
+                        "on-surface": "#e5e2e1",
+                        "error-container": "#93000a",
+                        "on-primary-fixed": "#001d36",
+                        "surface-container": "#201f1f",
+                        "on-secondary": "#00390a",
+                        "error": "#ffb4ab",
+                        "on-primary-fixed-variant": "#00497d",
+                        "background": "#131313"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .tonal-shift-bg {
+            background: linear-gradient(to bottom, #1c1b1b, #131313);
+        }
+        .aura-pulse {
+            box-shadow: 0 0 20px rgba(158, 202, 255, 0.2);
+        }
+        .glass-panel {
+            backdrop-filter: blur(12px);
+            background-color: rgba(42, 42, 42, 0.8);
+        }
+        /* Custom side nav toggle logic for preview */
+        #intelligence-hub:target {
+            transform: translateX(0);
+        }
+    
+        @keyframes shimmer {
+            100% { transform: translateX(100%); }
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary/30 min-h-screen overflow-hidden">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#131313]/80 backdrop-blur-xl flex flex-col w-full shadow-[0_8px_32px_rgba(33,150,243,0.06)]">
+<div class="flex justify-between items-center px-8 h-16 w-full">
+<div class="text-xl font-bold tracking-tighter text-[#E5E2E1] font-headline uppercase">
+            The Ethereal Agent
+        </div>
+<div class="flex items-center gap-6"><button class="relative group w-8 h-8 rounded-full overflow-hidden border border-primary/20 hover:border-primary/60 transition-all duration-300">
+<img alt="User Profile" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQvwobKsH8e5V_mJCpuLak-9llqtClBzpimqZJPrbDPDoxok2Ee37BDh8V5JDSK7SUHFYgiUUMRh-BUpCRhCZFmrvd3JDBYNI1EYBuDR5Mz6Vvk-E6tPIBviCIWUfblQ28KER_NOVmHJbtQ6sbxvM-sk2jjiCyp3e9KlGjzijYSfqqAps723GNb6nQDat80saSa47MRtrzRDTP-pbVhoYHxwrFGg1TAahB57CTMl1Y1TUXLoEWYvUkl8kR9WnsPuqDBHdKhpL7w6w"/>
+<div class="absolute inset-0 bg-primary/5 group-hover:bg-transparent transition-colors"></div>
+</button>
+<button class="text-[#E5E2E1]/60 hover:bg-[#3A3939] p-2 rounded-full transition-colors duration-300 flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<a class="relative group" href="#intelligence-hub">
+<div class="w-8 h-8 rounded-full border-2 border-primary/40 flex items-center justify-center aura-pulse group-hover:border-primary transition-all duration-300">
+<div class="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
+</div>
+</a>
+</div>
+</div>
+<!-- Minimal Progress Bar -->
+<div class="relative w-full h-[4px] bg-white/5 group/progress cursor-help transition-all duration-300 ease-out hover:h-6 overflow-hidden">
+<!-- Progress Fill -->
+<div class="absolute top-0 left-0 h-full bg-primary-container w-[60%] shadow-[0_0_12px_rgba(33,150,243,0.3)] transition-all duration-500 ease-in-out"></div>
+<!-- Centered Hover Label -->
+<div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover/progress:opacity-100 transition-opacity duration-300 delay-75 pointer-events-none">
+<span class="text-[10px] font-bold text-white uppercase tracking-[0.2em] drop-shadow-sm">
+            Stage 3: Technical Assessment <span class="mx-2 opacity-40">|</span> 60%
+        </span>
+</div>
+<!-- Subtle Gloss/Glow overlay on hover -->
+<div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover/progress:animate-[shimmer_2s_infinite] pointer-events-none"></div>
+</div>
+</header>
+<!-- SideNavBar (Intelligence Hub) - Hidden by default, triggered by #intelligence-hub target -->
+<aside class="fixed right-0 h-full w-80 z-[60] translate-x-full transition-transform duration-500 ease-in-out bg-[#1C1B1B] shadow-[-24px_0_40px_rgba(158,202,255,0.06)] flex flex-col py-8 px-4 gap-6" id="intelligence-hub">
+<div class="flex flex-col items-center gap-4 mb-8">
+<div class="relative w-24 h-24 rounded-full overflow-hidden border border-primary/20 bg-surface-container-highest flex items-center justify-center shadow-2xl">
+<img alt="AI Agent Status Aura" class="w-full h-full object-cover grayscale opacity-80" data-alt="Abstract ethereal AI avatar with blue lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2IIKHSC8uYGBOG4YoTT-osYcdeZhEmWV3GC_WF7esTEmwLMzObb4XCZeEB41YT7nnCGhx_lN9fq3eXUIB4ty6sj9cpZ2DMnmiZfxJ-CRl11nuln1v5gsXhBHmOS3x6zDASuUgSQwHsKCjoJ3sRLkrzs_HhQKs2KpcKzxcWgg-2_YyFnHftKKQsPStLFEOdrFh4zxEzOYoZEwBFdjg61ddzgr__kLqEqTfHbRDrEb7p9geFGcVbt9iEzXE6syHOVhlLX6QQQ3zFqc"/>
+<div class="absolute inset-0 bg-primary/10 mix-blend-overlay"></div>
+</div>
+<div class="text-center">
+<h2 class="font-headline font-bold text-lg text-primary tracking-tight">Intelligence Hub</h2>
+<p class="text-xs font-label uppercase tracking-widest text-secondary mt-1">System Stable</p>
+</div>
+</div>
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg border-r-2 border-[#9ECAFF] text-[#9ECAFF] bg-[#2A2A2A]/50 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-label text-sm">System Diagnostics</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-[#E5E2E1]/50 hover:text-[#E5E2E1] hover:bg-[#2A2A2A] transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="font-label text-sm">Neural Logs</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-[#E5E2E1]/50 hover:text-[#E5E2E1] hover:bg-[#2A2A2A] transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label text-sm">Configuration</span>
+</a>
+</nav>
+<div class="mt-auto pt-6 border-t border-outline-variant/10">
+<a class="flex items-center justify-center gap-2 text-error text-xs uppercase font-bold tracking-tighter hover:bg-error/10 py-3 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="power_settings_new">power_settings_new</span>
+                Deactivate Core
+            </a>
+</div>
+<!-- Close trigger -->
+<a class="absolute top-4 left-4 text-on-surface/40 hover:text-on-surface transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</a>
+</aside>
+<!-- Main Canvas -->
+<main class="relative h-screen flex flex-col items-center justify-center px-4 pt-16">
+<!-- Conversation Container -->
+<div class="w-full max-w-[800px] flex flex-col items-center text-center space-y-12 mb-24">
+<!-- AI Response Text -->
+<div class="space-y-6">
+<h1 class="font-headline text-3xl md:text-4xl font-extrabold tracking-tight text-on-background leading-tight">
+                    Synchronizing neural pathways for <span class="text-primary italic">optimal synthesis</span>.
+                </h1>
+<p class="text-on-surface-variant max-w-lg mx-auto leading-relaxed opacity-80">
+                    Your request is being processed through the ethereal engine. Expect a refined outcome shortly.
+                </p>
+</div>
+<!-- Waveform Indicator -->
+<div class="w-full h-12 flex items-center justify-center gap-1.5 overflow-hidden">
+<div class="h-4 w-1 bg-primary rounded-full animate-[bounce_1s_infinite_100ms] shadow-[0_0_8px_rgba(158,202,255,0.4)]"></div>
+<div class="h-8 w-1 bg-primary-container rounded-full animate-[bounce_1.2s_infinite_200ms] shadow-[0_0_8px_rgba(33,150,243,0.4)]"></div>
+<div class="h-6 w-1 bg-primary rounded-full animate-[bounce_0.8s_infinite_300ms] shadow-[0_0_8px_rgba(158,202,255,0.4)]"></div>
+<div class="h-10 w-1 bg-primary-container rounded-full animate-[bounce_1.5s_infinite_400ms] shadow-[0_0_8px_rgba(33,150,243,0.4)]"></div>
+<div class="h-5 w-1 bg-primary rounded-full animate-[bounce_1.1s_infinite_500ms] shadow-[0_0_8px_rgba(158,202,255,0.4)]"></div>
+<div class="h-9 w-1 bg-primary-container rounded-full animate-[bounce_1.3s_infinite_600ms] shadow-[0_0_8px_rgba(33,150,243,0.4)]"></div>
+<div class="h-7 w-1 bg-primary rounded-full animate-[bounce_0.9s_infinite_700ms] shadow-[0_0_8px_rgba(158,202,255,0.4)]"></div>
+</div>
+</div>
+<!-- Multifunctional Input Area -->
+<div class="fixed bottom-12 w-full max-w-2xl px-6">
+<div class="relative flex items-center bg-surface-container-lowest rounded-full p-2 group transition-all duration-300 focus-within:ring-2 focus-within:ring-primary/20 border-2 border-dashed border-outline/20 hover:border-primary/40 focus-within:border-primary/40">
+<!-- File Upload -->
+<button class="w-12 h-12 flex items-center justify-center text-outline hover:text-primary transition-colors duration-200">
+<span class="material-symbols-outlined" data-icon="add_circle">add_circle</span>
+</button>
+<!-- Input -->
+<input class="flex-grow bg-transparent border-none focus:ring-0 text-on-surface placeholder:text-outline/50 font-body text-base px-2" placeholder="Drop a PDF/Text document or type here..." type="text"/>
+<!-- Action Group -->
+<div class="flex items-center gap-1 pr-1">
+<button class="w-10 h-10 flex items-center justify-center text-outline hover:text-primary transition-colors" title="Upload File"><span class="material-symbols-outlined" data-icon="upload_file">upload_file</span></button><button class="w-10 h-10 flex items-center justify-center text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="mic">mic</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center bg-primary text-on-primary rounded-full hover:scale-105 active:scale-95 transition-all">
+<span class="material-symbols-outlined" data-icon="arrow_forward" data-weight="fill">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Contextual Hint -->
+<p class="text-center text-[10px] uppercase tracking-[0.2em] text-outline/30 mt-4 font-bold">
+                Shift + Enter for multi-dimensional expansion
+            </p>
+</div>
+</main>
+<!-- Subtle Background Elements -->
+<div class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] bg-primary/5 rounded-full blur-[120px] -z-10 pointer-events-none"></div>
+<div class="fixed -bottom-48 -left-48 w-96 h-96 bg-secondary-container/5 rounded-full blur-[100px] -z-10 pointer-events-none"></div>
+</body></html>
