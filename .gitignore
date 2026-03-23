@@ -42,3 +42,8 @@ node_modules
 
 vite.config.*.timestamp
 vite.config.mts.timestamp-*
+
+# Ignore application configuration
+/config/application.yml
+
+.claude

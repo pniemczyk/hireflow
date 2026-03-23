@@ -1,0 +1,20 @@
+fresh_candidate:
+  job: active_job
+  name: "Jane Doe"
+  email: "jane@example.com"
+  status: "cv_processing"
+
+text_candidate:
+  job: active_job
+  name: "Bob Smith"
+  email: "bob@example.com"
+  cv_raw_text: "# Bob Smith\n\n6 years Rails, PostgreSQL, Minitest."
+  status: "ready_for_evaluating"
+
+evaluated_candidate:
+  job: active_job
+  name: "Alice Jones"
+  email: "alice@example.com"
+  cv_raw_text: "# Alice Jones\n\n5 years Rails."
+  status: "evaluated"
+  evaluation_result: '{"overall":"pass","score":82,"summary":"Strong fit.","gaps":[],"questions":[]}'

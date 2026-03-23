@@ -1,0 +1,11 @@
+active_job:
+  title: "Senior Rails Engineer"
+  status: "active"
+  short_description: "Backend platform role."
+  description: "Full description of the senior Rails role."
+
+closed_job:
+  title: "Closed Position"
+  status: "closed"
+  short_description: "This role is no longer accepting applications."
+  description: "Closed role."

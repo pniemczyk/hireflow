@@ -53,6 +53,15 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
+
+  gem "webmock"
+  gem "minitest-reporters"
 end
 
 gem "vite_rails", "~> 3.10"
+gem "redcarpet", "~> 3.6"
+gem "anthropic", "~> 1.25"
+gem "pdf-reader", "~> 2.0"
+gem "figaro"
+gem "statesman_scaffold"
+gem "inquiry_attrs"

@@ -2,6 +2,10 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Security
+
+- **Never read `config/application.yml`** — it contains real API keys and secrets. It is git-ignored. Use `config/application.sample.yml` as the reference for required keys instead.
+
 ## Product
 
 AI-powered candidate screening platform. Candidates upload a CV, the system scores it against job criteria, then conducts an adaptive AI-driven interview, producing a scored summary with red flags and strengths for a human recruiter to make the final call.

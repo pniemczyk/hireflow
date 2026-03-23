@@ -1,0 +1,25 @@
+# Environment variables template — commit this file to version control.
+#
+# To set up locally:
+#   cp config/application.sample.yml config/application.yml
+#   Fill in the real values in config/application.yml (it is git-ignored).
+#
+# TODO: Replace Figaro with Rails encrypted credentials (`rails credentials:edit`)
+#       once the team is set up and a shared master.key workflow is established.
+
+# ── AI ─────────────────────────────────────────────────────────────────────────
+# Anthropic API key — used for CV extraction (PDF → Markdown) and all AI stages.
+# Get yours at https://console.anthropic.com/settings/keys
+ANTHROPIC_API_KEY: "REPLACE_ME"
+
+# ── Voice / TTS (ElevenLabs — Stage 3) ─────────────────────────────────────────
+# ElevenLabs API key — used for text-to-speech during the AI interview stage.
+# Get yours at https://elevenlabs.io/app/settings/api-keys
+ELEVENLABS_API_KEY: "REPLACE_ME"
+
+# ── Environment-specific overrides ─────────────────────────────────────────────
+# Uncomment and set production values in your deployment environment.
+#
+# production:
+#   ANTHROPIC_API_KEY: "REPLACE_ME"
+#   ELEVENLABS_API_KEY: "REPLACE_ME"

@@ -1,0 +1,48 @@
+<% content_for :title, "404 — Not Found" %>
+
+<div class="min-h-screen bg-surface text-on-surface font-body flex flex-col items-center justify-center px-6 relative overflow-hidden">
+
+  <%# Background aura %>
+  <div class="absolute inset-0 pointer-events-none"
+       style="background: radial-gradient(circle at center, rgba(158,202,255,0.04) 0%, transparent 65%)"></div>
+
+  <div class="relative z-10 text-center max-w-lg">
+
+    <%# Glyph %>
+    <div class="inline-flex h-20 w-20 rounded-2xl bg-surface-container-low items-center justify-center mb-8">
+      <i data-lucide="file-search" class="w-9 h-9 text-on-surface-variant"></i>
+    </div>
+
+    <%# Code %>
+    <p class="text-[7rem] font-headline font-bold leading-none text-surface-container-high select-none mb-2">
+      404
+    </p>
+
+    <h1 class="text-2xl font-headline font-bold text-on-surface mb-3">
+      Nothing here
+    </h1>
+
+    <p class="text-on-surface-variant leading-relaxed mb-10">
+      The page or resource you're looking for doesn't exist or may have been removed.
+    </p>
+
+    <%# CTA %>
+    <% if (job = Job.active.first) %>
+      <%= link_to new_job_application_path(job),
+            class: "inline-flex items-center gap-2 px-8 py-3.5 bg-primary text-on-primary
+                    rounded-full font-headline font-bold text-sm
+                    shadow-[0_8px_24px_rgba(158,202,255,0.2)]
+                    hover:shadow-[0_12px_32px_rgba(158,202,255,0.3)]
+                    hover:-translate-y-0.5 transition-all active:scale-95" do %>
+        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+        Back to application
+      <% end %>
+    <% end %>
+
+  </div>
+
+  <%# Subtle grid decoration %>
+  <div class="fixed bottom-0 left-0 w-full h-24 pointer-events-none"
+       style="background: linear-gradient(to top, #131313, transparent)"></div>
+
+</div>

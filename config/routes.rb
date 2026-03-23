@@ -9,6 +9,11 @@ Rails.application.routes.draw do
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
+  get  'jobs/:job_id/apply',                         to: 'applications#new',       as: :new_job_application
+  post 'jobs/:job_id/apply',                         to: 'applications#create',    as: :job_application
+  get  'jobs/:job_id/apply/submitted',               to: 'applications#submitted', as: :submitted_job_application
+  get  'jobs/:job_id/apply/:candidate_id/status',    to: 'applications#status',    as: :candidate_application_status
+
   # Defines the root path route ("/")
   root "welcome#index"
 end

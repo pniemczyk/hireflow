@@ -1,0 +1,98 @@
+<% content_for :title, "CV Submitted – #{@job.title}" %>
+
+<div class="min-h-screen bg-surface text-on-surface font-body selection:bg-primary/30 selection:text-primary"
+     data-controller="status-poll"
+     data-status-poll-url-value="<%= candidate_application_status_path(@job, @candidate) %>"
+     data-status-poll-interval-value="2500">
+
+  <%= render 'shared/topbar', progress_percent: 30, stage_label: 'Stage 1: CV Submission — Complete' %>
+
+  <main class="min-h-screen pt-32 pb-24 px-6 flex flex-col items-center justify-center relative overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none"
+         style="background: radial-gradient(circle at center, rgba(120,220,119,0.05) 0%, transparent 60%)"></div>
+
+    <div class="w-full max-w-[600px] z-10 text-center">
+
+      <%# Icon %>>
+      <div class="inline-flex h-20 w-20 rounded-2xl bg-secondary-container/30 items-center justify-center mb-8
+                  shadow-[0_0_40px_rgba(120,220,119,0.15)]">
+        <i data-lucide="check-circle-2" class="w-9 h-9 text-secondary"></i>
+      </div>
+
+      <div class="inline-flex items-center px-4 py-1 rounded-full bg-surface-container-low text-on-surface-variant
+                  text-xs font-medium tracking-widest uppercase mb-6">
+        Submission Received
+      </div>
+
+      <h1 class="text-4xl md:text-5xl font-headline font-bold text-on-surface tracking-tight mb-4">
+        Profile <span class="text-secondary">Received</span>
+      </h1>
+
+      <p class="text-on-surface-variant text-lg leading-relaxed mb-10 max-w-md mx-auto">
+        Your CV has been submitted for the <strong class="text-on-surface"><%= @job.title %></strong> position.
+      </p>
+
+      <%# ── Live status card ────────────────────────────────────────────────────── %>
+      <div class="bg-surface-container-low rounded-2xl p-6 mb-8 text-left"
+           data-status-poll-target="card"
+           data-status="<%= @candidate.current_state %>">
+
+        <div class="flex items-center justify-between mb-4">
+          <p class="text-on-surface-variant text-xs font-label uppercase tracking-widest opacity-60">
+            Processing status
+          </p>
+          <span class="text-xs text-on-surface-variant opacity-40" data-status-poll-target="label">
+            <%= @candidate.current_state.humanize %>
+          </span>
+        </div>
+
+        <%# Progress bar %>
+        <div class="h-1 w-full bg-surface-container-high rounded-full overflow-hidden mb-6">
+          <div class="h-full bg-primary rounded-full transition-all duration-700"
+               style="width: 0%"
+               data-status-poll-target="bar"></div>
+        </div>
+
+        <%# Pipeline steps %>
+        <div class="space-y-5">
+          <div class="flex items-start gap-4">
+            <div class="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <span class="text-primary text-xs font-headline font-bold">01</span>
+            </div>
+            <div>
+              <p class="text-on-surface font-medium text-sm">CV Evaluation</p>
+              <p class="text-on-surface-variant text-sm mt-0.5">AI evaluates your profile against the job scenario</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <span class="text-primary text-xs font-headline font-bold">02</span>
+            </div>
+            <div>
+              <p class="text-on-surface font-medium text-sm">AI Interview</p>
+              <p class="text-on-surface-variant text-sm mt-0.5">If there are gaps, a targeted AI interview will follow</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <span class="text-primary text-xs font-headline font-bold">03</span>
+            </div>
+            <div>
+              <p class="text-on-surface font-medium text-sm">Recruiter Review</p>
+              <p class="text-on-surface-variant text-sm mt-0.5">A human recruiter makes the final decision</p>
+            </div>
+          </div>
+        </div>
+
+        <%# Evaluation result panel — hidden until polling surfaces it %>
+        <div class="hidden mt-6 pt-6 border-t border-outline-variant/10"
+             data-status-poll-target="resultPanel">
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <div class="fixed bottom-0 left-0 w-full h-24 pointer-events-none z-0"
+       style="background: linear-gradient(to top, #131313, transparent)"></div>
+</div>

@@ -1,5 +1,39 @@
 @theme {
   --font-sans: "Noto Sans", sans-serif;
+  --font-headline: "Manrope", sans-serif;
+  --font-body: "Inter", sans-serif;
+
+  /* Ethereal Agent design system tokens */
+  --color-surface: #131313;
+  --color-surface-dim: #131313;
+  --color-surface-bright: #3a3939;
+  --color-surface-container-lowest: #0e0e0e;
+  --color-surface-container-low: #1c1b1b;
+  --color-surface-container: #201f1f;
+  --color-surface-container-high: #2a2a2a;
+  --color-surface-container-highest: #353534;
+  --color-surface-variant: #353534;
+  --color-background: #131313;
+  --color-on-background: #e5e2e1;
+  --color-on-surface: #e5e2e1;
+  --color-on-surface-variant: #bfc7d4;
+  --color-outline: #89919d;
+  --color-outline-variant: #404752;
+  --color-primary: #9ecaff;
+  --color-on-primary: #003258;
+  --color-primary-container: #2196f3;
+  --color-primary-fixed: #d1e4ff;
+  --color-primary-fixed-dim: #9ecaff;
+  --color-secondary: #78dc77;
+  --color-on-secondary: #00390a;
+  --color-secondary-container: #00761f;
+  --color-on-secondary-container: #95fb92;
+  --color-error: #ffb4ab;
+  --color-on-error: #690005;
+  --color-inverse-surface: #e5e2e1;
+  --color-inverse-on-surface: #313030;
+  --color-inverse-primary: #0061a4;
+
   --font-public: "Public Sans", sans-serif;
   --font-tourney: "Tourney", sans-serif;
   --font-code: "JetBrains Mono", monospace;

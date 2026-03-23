@@ -33,6 +33,7 @@
     "@hotwired/stimulus": "^3.2.2",
     "@hotwired/turbo-rails": "^8.0.16",
     "@iconify-json/lucide": "^1.2.68",
+    "@iconify/iconify": "^3.1.1",
     "@iconify/tailwind4": "^1.0.6",
     "@rails/actioncable": "^8.0.201",
     "@rails/activestorage": "^8.0.201",

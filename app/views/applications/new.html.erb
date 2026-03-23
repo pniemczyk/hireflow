@@ -1,0 +1,222 @@
+<% content_for :title, "Apply – #{@job.title}" %>
+
+<div class="min-h-screen bg-surface text-on-surface font-body selection:bg-primary/30 selection:text-primary"
+     data-controller="cv-upload">
+
+  <%= render 'shared/topbar', progress_percent: 5, stage_label: 'Stage 1: CV Submission' %>
+
+  <main class="min-h-screen pt-32 pb-24 px-6 relative overflow-hidden flex flex-col items-center">
+    <%# Background aura glow %>
+    <div class="absolute inset-0 pointer-events-none"
+         style="background: radial-gradient(circle at center, rgba(158,202,255,0.06) 0%, transparent 70%)"></div>
+
+    <div class="w-full max-w-[800px] z-10">
+
+      <%# Phase badge + headline %>
+      <div class="text-center mb-12">
+        <div class="inline-flex items-center px-4 py-1 rounded-full bg-surface-container-low text-on-surface-variant text-xs font-medium tracking-widest uppercase mb-6">
+          Phase 01 — Identification
+        </div>
+        <h1 class="text-4xl md:text-5xl font-headline font-bold text-on-surface tracking-tight mb-4">
+          Submit Your <span class="text-primary">Intelligence Profile</span>
+        </h1>
+        <p class="text-on-surface-variant text-lg max-w-xl mx-auto leading-relaxed">
+          Upload your CV (PDF or Markdown) or paste the text below to begin evaluation.
+        </p>
+      </div>
+
+      <%# Job context card %>
+      <div data-controller="job-card">
+        <div class="bg-surface-container-low rounded-xl p-6 mb-8 flex flex-col md:flex-row items-center justify-between gap-4">
+          <div class="flex items-center gap-4">
+            <div class="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+              <i data-lucide="code-2" class="w-6 h-6 text-primary"></i>
+            </div>
+            <div>
+              <h3 class="text-on-surface font-headline font-bold"><%= @job.title %></h3>
+              <% if @job.short_description.present? %>
+                <div class="text-on-surface-variant text-sm leading-relaxed mt-0.5
+                            prose-sm prose-invert max-w-none
+                            prose-strong:text-on-surface prose-strong:font-medium
+                            prose-p:my-0">
+                  <%= markdown @job.short_description %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+          <button type="button"
+                  class="flex-shrink-0 px-6 py-2.5 rounded-full border border-outline-variant/30
+                         text-on-surface text-sm font-medium
+                         hover:bg-surface-container-high transition-all active:scale-95"
+                  data-action="click->job-card#open">
+            Read More
+          </button>
+        </div>
+
+        <%# Job description modal %>
+        <div class="hidden fixed inset-0 z-[100] flex items-center justify-center p-6"
+             data-job-card-target="modal">
+          <div class="absolute inset-0 bg-surface/70 backdrop-blur-sm"
+               data-action="click->job-card#close"></div>
+          <div class="relative w-full max-w-2xl max-h-[80vh] bg-surface-container-low rounded-2xl
+                      shadow-[0_32px_64px_rgba(0,0,0,0.5)] z-10 flex flex-col overflow-hidden">
+
+            <%# Modal header %>
+            <div class="flex items-start justify-between px-8 pt-8 pb-6 flex-shrink-0">
+              <div>
+                <p class="text-xs font-label uppercase tracking-widest text-on-surface-variant/60 mb-1">Job Opening</p>
+                <h2 class="text-xl font-headline font-bold text-on-surface"><%= @job.title %></h2>
+              </div>
+              <button type="button"
+                      class="w-9 h-9 flex items-center justify-center rounded-full text-on-surface-variant
+                             hover:bg-surface-bright hover:text-on-surface transition-all flex-shrink-0 mt-1"
+                      data-action="click->job-card#close">
+                <i data-lucide="x" class="w-5 h-5"></i>
+              </button>
+            </div>
+
+            <%# Scrollable body %>
+            <div class="px-8 pb-8 overflow-y-auto
+                        prose prose-invert prose-sm max-w-none
+                        prose-headings:font-headline prose-headings:text-on-surface prose-headings:font-bold
+                        prose-h2:text-base prose-h2:mt-6 prose-h2:mb-3
+                        prose-p:text-on-surface-variant prose-p:leading-relaxed
+                        prose-li:text-on-surface-variant
+                        prose-strong:text-on-surface prose-strong:font-semibold
+                        prose-ul:space-y-1">
+              <%= markdown @job.description %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <%# Flash errors %>
+      <% if @candidate.errors.any? %>
+        <div class="mb-6 bg-error/10 rounded-xl px-6 py-4">
+          <% @candidate.errors.full_messages.each do |msg| %>
+            <p class="text-error text-sm"><%= msg %></p>
+          <% end %>
+        </div>
+      <% end %>
+
+      <%# CV submission form %>
+      <%= form_with model: @candidate,
+                    url: job_application_path(@job),
+                    method: :post,
+                    multipart: true,
+                    class: "relative group" do |f| %>
+
+        <%# Input canvas — hosts both cv-upload and voice-input controllers %>
+        <div class="relative bg-surface-container-lowest rounded-2xl flex flex-col p-8 transition-all duration-500
+                    shadow-inner focus-within:shadow-[0_0_0_1px_rgba(158,202,255,0.15)]
+                    group-hover:shadow-[0_0_40px_rgba(158,202,255,0.03)]"
+             data-controller="voice-input"
+             data-cv-upload-target="canvas"
+             data-action="dragover->cv-upload#dragOver dragleave->cv-upload#dragLeave drop->cv-upload#drop">
+
+          <%# Drag overlay — shown when a file is dragged over the canvas %>
+          <div class="hidden absolute inset-0 z-20 rounded-2xl flex flex-col items-center justify-center gap-3
+                      bg-surface-container-lowest/90 backdrop-blur-sm pointer-events-none
+                      border border-primary/30"
+               data-cv-upload-target="dragOverlay">
+            <i data-lucide="upload-cloud" class="w-10 h-10 text-primary"></i>
+            <p class="text-primary font-headline font-bold text-sm tracking-wide">Drop to upload your CV</p>
+          </div>
+
+          <%# Source label %>
+          <div class="flex items-center gap-3 text-on-surface-variant mb-4">
+            <i data-lucide="file-text" class="w-4 h-4"></i>
+            <span class="text-xs font-label uppercase tracking-widest opacity-60">CV Content</span>
+          </div>
+
+          <%# Textarea — always visible %>
+          <%= f.text_area :cv_raw_text,
+                placeholder: "Paste your CV content here or drop your file to parse...",
+                rows: 14,
+                data: { voice_input_target: "output" },
+                class: "w-full bg-transparent border-none outline-none focus:ring-0 focus:outline-none text-on-surface
+                        placeholder:text-on-surface-variant/30 resize-none font-body text-base
+                        leading-relaxed scrollbar-thin scrollbar-thumb-surface-container-high" %>
+
+          <%# Hidden file input %>
+          <%= f.file_field :cv_file,
+                accept: ".pdf,.md,.txt",
+                class: "hidden",
+                data: { cv_upload_target: "fileInput", action: "change->cv-upload#fileSelected" } %>
+
+          <%# Bottom action bar %>
+          <div class="mt-8 flex flex-col md:flex-row items-center justify-between gap-6 pt-6"
+               style="border-top: 1px solid rgba(64,71,82,0.15)">
+
+            <div class="flex items-center gap-5">
+              <%# Upload shortcut %>
+              <button type="button"
+                      class="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors"
+                      data-action="click->cv-upload#uploadShortcut">
+                <i data-lucide="upload" class="w-4 h-4"></i>
+                <span class="text-sm font-medium">Upload PDF / MD</span>
+              </button>
+
+              <%# File selected badge — hidden until a file is chosen %>
+              <div class="hidden items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium"
+                   data-cv-upload-target="fileNameBadge">
+                <i data-lucide="file-check" class="w-3.5 h-3.5"></i>
+                <span data-cv-upload-target="fileNameText"></span>
+              </div>
+
+              <div class="h-4 w-px bg-outline-variant/20"></div>
+
+              <%# Voice input button %>
+              <button type="button"
+                      class="group/mic relative flex items-center gap-2 text-on-surface-variant
+                             hover:text-primary transition-colors"
+                      data-action="click->voice-input#toggle"
+                      data-voice-input-target="micBtn"
+                      aria-pressed="false">
+                <i data-lucide="mic" class="w-4 h-4"></i>
+                <span class="text-sm font-medium">Voice</span>
+                <%# Tooltip %>
+                <span class="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1
+                             bg-surface-container-high text-[10px] text-primary
+                             rounded opacity-0 group-hover/mic:opacity-100
+                             transition-opacity whitespace-nowrap pointer-events-none"
+                      data-voice-tooltip>
+                  Speech to Text
+                </span>
+              </button>
+
+              <div class="h-4 w-px bg-outline-variant/20"></div>
+
+              <%# Status indicator %>
+              <div class="flex items-center gap-2">
+                <div class="h-1.5 w-1.5 rounded-full bg-secondary animate-pulse"
+                     data-voice-input-target="statusDot"></div>
+                <span class="text-xs text-on-surface-variant opacity-60">System ready for processing</span>
+              </div>
+            </div>
+
+            <%= f.submit "Submit CV →",
+                  class: "w-full md:w-auto px-10 py-4 bg-primary text-on-primary rounded-full
+                          font-headline font-bold text-base cursor-pointer
+                          shadow-[0_8px_24px_rgba(158,202,255,0.2)]
+                          hover:shadow-[0_12px_32px_rgba(158,202,255,0.3)]
+                          hover:-translate-y-0.5 transition-all active:scale-95" %>
+          </div>
+        </div>
+
+        <%# Corner accent %>
+        <div class="absolute top-4 right-4 opacity-10 group-hover:opacity-25 transition-opacity pointer-events-none">
+          <i data-lucide="scan" class="w-10 h-10 text-on-surface-variant"></i>
+        </div>
+
+      <% end %>
+
+      <p class="mt-4 text-center text-on-surface-variant/40 text-xs">
+        Supported formats: .pdf, .md, .txt &mdash; Max 10 MB
+      </p>
+    </div>
+  </main>
+
+  <div class="fixed bottom-0 left-0 w-full h-24 pointer-events-none z-0"
+       style="background: linear-gradient(to top, #131313, transparent)"></div>
+</div>
