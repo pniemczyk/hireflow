@@ -1081,6 +1081,13 @@
   dependencies:
     "@iconify/types" "*"
 
+"@iconify/iconify@^3.1.1":
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/@iconify/iconify/-/iconify-3.1.1.tgz#aa0f3807be2eab53e86228f7bb1ad3bd59bcec1a"
+  integrity sha512-1nemfyD/OJzh9ALepH7YfuuP8BdEB24Skhd8DXWh0hzcOxImbb1ZizSZkpCzAwSZSGcJFmscIBaBQu+yLyWaxQ==
+  dependencies:
+    "@iconify/types" "^2.0.0"
+
 "@iconify/tailwind4@^1.0.6":
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/@iconify/tailwind4/-/tailwind4-1.2.3.tgz#ae6e0a554571e0ea63989d50eda0c9e2723ec3b5"

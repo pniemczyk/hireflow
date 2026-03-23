@@ -1,0 +1,14 @@
+rails_scenario:
+  job: active_job
+  version: 1
+  content: |
+    # Evaluation Scenario
+
+    ## Required Criteria
+    - 5+ years Rails experience
+    - Strong Ruby knowledge
+    - PostgreSQL experience
+
+    ## Evaluation Instructions
+    Return JSON: { "overall": "pass|partial|fail", "score": 0-100,
+    "summary": "...", "gaps": [], "questions": [] }
