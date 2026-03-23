@@ -1,0 +1,7 @@
+@import '../stylesheets/application.tailwind.css';
+@import 'remixicon/fonts/remixicon.css';
+
+body {
+  font-family: 'Noto Sans', sans-serif;
+  font-weight: 400;
+}

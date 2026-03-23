@@ -1,0 +1,22 @@
+apl.localhost {
+	handle /vite-dev/* {
+		reverse_proxy localhost:3066
+	}
+
+  reverse_proxy localhost:3120
+  tls internal
+
+	log {
+		level INFO
+		output file log/caddy.log {
+			roll_size 2mb
+			roll_keep 5
+			roll_keep_for 48h
+		}
+	}
+}
+
+vite.apl.localhost {
+	reverse_proxy localhost:3066
+	tls internal
+}

@@ -1,0 +1,23 @@
+@import "tailwindcss";
+@import "tailwindcss/preflight" layer(base);
+@import "tailwindcss/utilities" layer(utilities);
+
+@plugin "@tailwindcss/typography";
+@plugin "@tailwindcss/aspect-ratio";
+@plugin "tailwindcss-displaymodes";
+@plugin 'tailwind-scrollbar';
+
+@import "./daisyui.css";
+@import "./tailwind.css";
+
+@source "../../../public/*.html";
+@source "../../helpers/**/*.rb";
+@source "../../views/**/*.{html,html.erb,erb,haml,slim}";
+@source "../javascript/**/*.js";
+@source "../stylesheets/**/*.css";
+
+/*@import "./components/{name}.tailwind.css";*/
+
+@plugin '@iconify/tailwind4' {
+  prefixes: lucide;
+}

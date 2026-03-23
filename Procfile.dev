@@ -1,0 +1,3 @@
+web: bin/rails server -p 3120
+vite: bin/vite dev
+caddy: caddy run --config Caddyfile

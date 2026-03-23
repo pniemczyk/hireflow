@@ -1,0 +1,49 @@
+{
+  "private": true,
+  "type": "module",
+  "devDependencies": {
+    "@tailwindcss/aspect-ratio": "^0.4.2",
+    "@tailwindcss/cli": "^4.1.12",
+    "@tailwindcss/typography": "^0.5.16",
+    "@tailwindcss/vite": "^4.2.2",
+    "autoprefixer": "^10.4.21",
+    "daisyui": "^5.1.6",
+    "esbuild": "^0.25.9",
+    "esbuild-plugin-copy": "^2.1.1",
+    "esbuild-rails": "^1.0.7",
+    "eslint": "^9.34.0",
+    "eslint-formatter-compact": "^8.40.0",
+    "eslint-plugin-prettier": "^5.5.4",
+    "heroicons": "^2.2.0",
+    "postcss": "^8.5.6",
+    "prettier": "^3.6.2",
+    "rollup": "^4.50.0",
+    "tailwind-scrollbar": "^4.0.2",
+    "tailwindcss": "^4.1.12",
+    "tailwindcss-displaymodes": "^1.0.8",
+    "vite": "^8.0.0",
+    "vite-plugin-ruby": "^5.2.0",
+    "workbox-cli": "^7.3.0"
+  },
+  "scripts": {
+    "build": "node esbuild.config.mjs",
+    "build:css": "npx @tailwindcss/cli -i ./app/assets/stylesheets/application.css -o ./app/assets/builds/application.css --minify"
+  },
+  "dependencies": {
+    "@hotwired/stimulus": "^3.2.2",
+    "@hotwired/turbo-rails": "^8.0.16",
+    "@iconify-json/lucide": "^1.2.68",
+    "@iconify/tailwind4": "^1.0.6",
+    "@rails/actioncable": "^8.0.201",
+    "@rails/activestorage": "^8.0.201",
+    "@rails/request.js": "^0.0.12",
+    "compressorjs": "^1.2.1",
+    "croppie": "^2.6.5",
+    "dropzone": "^6.0.0-beta.2",
+    "lucide": "^0.544.0",
+    "remixicon": "^4.6.0",
+    "toastr": "^2.1.4",
+    "vite-plugin-pwa": "^1.2.0",
+    "vite-plugin-rails": "^0.6.0"
+  }
+}

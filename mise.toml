@@ -1,0 +1,50 @@
+[tools]
+ruby = "4.0.2"
+node = "24"
+
+[settings]
+idiomatic_version_file_enable_tools = ["ruby", "node"]
+
+[env]
+DEV_DOMAIN = "apl.localhost"
+PORT = "3110"
+RAILS_APP = "apl_candidate"
+DOMAIN = "apl.localhost"
+VITE_PORT = "3066"
+VITE_TEST_PORT = "3067"
+
+[tasks.up]
+description = "Start services in the background."
+run = ["OVERMIND_PROCFILE=Procfile.dev overmind start"]
+
+[tasks.up_local]
+description = "Start services in the background."
+run = ["OVERMIND_PROCFILE=Procfile.local.dev overmind start"]
+
+[tasks.connect]
+description = "Connect to a specific service while it is running."
+run = ["overmind connect"]
+
+[tasks.down]
+description = "Stop services."
+run = ["overmind quit"]
+
+[tasks.restart]
+description = "Restart a specific service or all overmind services. This does not restart the docker services."
+run = ["overmind restart"]
+
+[tasks.pull]
+description = "Pull and install dependencies."
+run = [
+  "git pull",
+  "mise exec --command 'bundle install'",
+  "mise exec --command 'yarn install'",
+]
+
+[tasks.echo]
+description = "Tail the background logs."
+run = ["overmind echo"]
+
+[tasks.status]
+description = "Check on the status of running services."
+run = ["overmind status"]
