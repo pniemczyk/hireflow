@@ -73,20 +73,18 @@ class ApplicationsController < ApplicationController
   def dispatch_processing(candidate)
     if candidate.cv_file.attached?
       # Stays in :cv_processing (initial state) — ProcessCvJob will advance it.
-      if Rails.env.development?
-        ProcessCvJob.perform_now(candidate.id)
-      else
-        ProcessCvJob.perform_later(candidate.id)
-      end
+      enqueue(ProcessCvJob, candidate.id)
     else
       # Text pasted directly — skip extraction, go straight to evaluation.
       candidate.transition_to!(:ready_for_evaluating)
-      if Rails.env.development?
-        EvaluateCvJob.perform_now(candidate.id)
-      else
-        EvaluateCvJob.perform_later(candidate.id)
-      end
+      enqueue(EvaluateCvJob, candidate.id)
     end
+  end
+
+  # Runs synchronously in development so results are visible immediately;
+  # defers to the queue in all other environments.
+  def enqueue(job_class, *args)
+    Rails.env.development? ? job_class.perform_now(*args) : job_class.perform_later(*args)
   end
 
   def candidate_params

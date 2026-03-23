@@ -13,6 +13,8 @@
 #   result = CvEvaluator.new(candidate).call
 #   candidate.update!(evaluation_result: result.to_json)
 class CvEvaluator
+  include AnthropicClient
+
   def initialize(candidate)
     @candidate = candidate
   end
@@ -40,10 +42,6 @@ class CvEvaluator
   class Error < StandardError; end
 
   private
-
-  def client
-    @client ||= Anthropic::Client.new(api_key: ENV.fetch('ANTHROPIC_API_KEY'))
-  end
 
   def build_prompt(scenario_content, cv_text)
     <<~PROMPT

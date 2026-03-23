@@ -1,17 +1,7 @@
 # frozen_string_literal: true
 
-class EvaluateCvJob < ApplicationJob
+class EvaluateCvJob < AnthropicJob
   queue_as :default
-
-  # Retry on transient API errors with exponential backoff.
-  retry_on Anthropic::Errors::RateLimitError,      wait: :polynomially_longer, attempts: 5
-  retry_on Anthropic::Errors::InternalServerError, wait: :polynomially_longer, attempts: 3
-  retry_on Anthropic::Errors::APIConnectionError,  wait: :polynomially_longer, attempts: 3
-
-  # Billing / bad request — won't recover on retry; discard and log.
-  discard_on Anthropic::Errors::BadRequestError do |job, error|
-    Rails.logger.error("[EvaluateCvJob] Non-retryable API error for candidate #{job.arguments.first}: #{error.message}")
-  end
 
   # @param candidate_id [Integer]
   def perform(candidate_id)

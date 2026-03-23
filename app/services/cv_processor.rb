@@ -10,6 +10,8 @@
 #   result = CvProcessor.new(candidate).call
 #   candidate.update!(cv_raw_text: result)
 class CvProcessor
+  include AnthropicClient
+
   # Maximum PDF size accepted by the Claude API (32 MB).
   MAX_PDF_BYTES = 32 * 1024 * 1024
 
@@ -47,8 +49,6 @@ class CvProcessor
     if bytes.bytesize > MAX_PDF_BYTES
       raise Error, "PDF is too large (#{bytes.bytesize / 1.megabyte} MB). Max 32 MB."
     end
-
-    client = Anthropic::Client.new(api_key: ENV.fetch('ANTHROPIC_API_KEY'))
 
     response = client.messages.create(
       model:      'claude-opus-4-6',
