@@ -14,6 +14,14 @@ Rails.application.routes.draw do
   get  'jobs/:job_id/apply/submitted',               to: 'applications#submitted', as: :submitted_job_application
   get  'jobs/:job_id/apply/:candidate_id/status',    to: 'applications#status',    as: :candidate_application_status
 
+  # Dev-only playground routes
+  if Rails.env.development?
+    namespace :dev do
+      get  'text_to_speech',            to: 'text_to_speech#show',      as: :text_to_speech
+      post 'text_to_speech/synthesize', to: 'text_to_speech#synthesize', as: :text_to_speech_synthesize
+    end
+  end
+
   # Defines the root path route ("/")
   root "welcome#index"
 end

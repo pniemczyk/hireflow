@@ -1,0 +1,98 @@
+<% content_for :title, "TTS Prototype — Dev" %>
+
+<style>
+  .word-token {
+    transition: color 120ms ease, text-shadow 120ms ease;
+    color: rgba(229, 226, 225, 0.25);
+  }
+  .word-spoken {
+    color: rgba(229, 226, 225, 0.55);
+  }
+  .word-current {
+    color: #9ecaff;
+    text-shadow: 0 0 16px rgba(158, 202, 255, 0.6);
+    font-weight: 600;
+  }
+</style>
+
+<div class="min-h-screen bg-surface text-on-surface font-body flex flex-col items-center justify-center px-6 py-20"
+     data-controller="tts"
+     data-tts-synthesize-url-value="<%= dev_text_to_speech_synthesize_path %>">
+
+  <%# ── Background glow ──────────────────────────────────────────── %>
+  <div class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70vw] h-[70vw] bg-primary/5 rounded-full blur-[120px] -z-10 pointer-events-none"></div>
+  <div class="fixed -bottom-48 -left-48 w-96 h-96 bg-secondary-container/5 rounded-full blur-[100px] -z-10 pointer-events-none"></div>
+
+  <%# ── Header ──────────────────────────────────────────────────── %>
+  <div class="mb-10 text-center">
+    <p class="text-xs uppercase tracking-[0.25em] text-outline mb-3">Dev Prototype</p>
+    <h1 class="font-headline text-3xl font-extrabold tracking-tight text-on-background">
+      Voice Synthesis <span class="text-primary italic">Preview</span>
+    </h1>
+    <p class="text-on-surface-variant text-sm mt-2">ElevenLabs TTS · word-sync · real-time waveform</p>
+  </div>
+
+  <div class="w-full max-w-2xl space-y-4">
+
+    <%# ── Text input ──────────────────────────────────────────────── %>
+    <div class="bg-surface-container-low rounded-xl p-5">
+      <label class="block text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant mb-3">
+        Text to speak
+      </label>
+      <textarea data-tts-target="textarea"
+                rows="5"
+                class="w-full bg-surface-container-lowest text-on-surface placeholder:text-outline/50 rounded-lg p-4 text-sm leading-relaxed resize-none outline-none focus:ring-2 focus:ring-primary/20 transition-shadow"
+                placeholder="Type anything…">Welcome to HireFlow. I'll be conducting your interview today. Let's start by learning a little more about your background and experience.</textarea>
+    </div>
+
+    <%# ── Controls ───────────────────────────────────────────────── %>
+    <div class="flex items-center gap-3">
+      <button data-tts-target="playBtn"
+              data-action="click->tts#play"
+              class="flex items-center gap-2 bg-primary text-on-primary text-sm font-bold px-6 py-3 rounded-full
+                     hover:scale-105 active:scale-95 transition-all
+                     disabled:opacity-40 disabled:cursor-not-allowed disabled:scale-100">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4">
+          <path d="M8 5v14l11-7z"/>
+        </svg>
+        Play
+      </button>
+
+      <button data-tts-target="stopBtn"
+              data-action="click->tts#stop"
+              disabled
+              class="flex items-center gap-2 text-on-surface text-sm px-6 py-3 rounded-full
+                     hover:bg-surface-bright transition-all
+                     disabled:opacity-30 disabled:cursor-not-allowed">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4">
+          <rect x="6" y="6" width="12" height="12" rx="1"/>
+        </svg>
+        Stop
+      </button>
+
+      <span data-tts-target="status"
+            class="ml-auto text-[10px] uppercase tracking-[0.2em] text-primary min-h-[1em]"></span>
+    </div>
+
+    <%# ── Waveform ────────────────────────────────────────────────── %>
+    <div data-tts-target="waveform"
+         class="rounded-xl px-6 h-20 flex items-end justify-center gap-[3px] overflow-hidden">
+      <% 28.times do %>
+        <div class="wave-bar w-1.5 rounded-full bg-primary transition-none"
+             style="height: 3px; opacity: 0.25;"></div>
+      <% end %>
+    </div>
+
+    <%# ── Spoken text output ──────────────────────────────────────── %>
+    <div class="bg-surface-container-low rounded-xl p-6">
+      <label class="block text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant mb-4">
+        Spoken text
+      </label>
+      <div data-tts-target="output"
+           class="text-[1.15rem] leading-[2] overflow-y-auto max-h-52 min-h-[3rem]">
+        <%# Populated by the Stimulus controller %>
+      </div>
+    </div>
+
+  </div>
+</div>

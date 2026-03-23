@@ -30,7 +30,8 @@ Variables live in `config/application.yml` (git-ignored). Use `config/applicatio
 | Variable | Required | Description |
 |---|---|---|
 | `ANTHROPIC_API_KEY` | Yes | Claude API key — get from [console.anthropic.com/settings/keys](https://console.anthropic.com/settings/keys) |
-| `ELEVENLABS_API_KEY` | No | ElevenLabs TTS key — only needed for Stage 2 voice output |
+| `ELEVENLABS_API_KEY` | No | ElevenLabs TTS key — required for the TTS prototype and Stage 2 voice output |
+| `ELEVENLABS_VOICE_ID` | No | ElevenLabs voice ID to use (defaults to Rachel `21m00Tcm4TlvDq8ikWAM` if unset) |
 
 > After editing `config/application.yml`, restart the server — Figaro loads env vars at boot.
 
@@ -138,6 +139,32 @@ cv_processing → ready_for_evaluating → evaluating → evaluated
 ```
 
 Future states: `interviewing → completed → accepted / rejected`
+
+---
+
+## Dev-only prototype pages
+
+These routes exist only in `development` and are not compiled into or accessible in production.
+
+### TTS prototype — `/dev/text_to_speech`
+
+A standalone sandbox for testing ElevenLabs text-to-speech ahead of Stage 2 (AI interview).
+
+**What it does:**
+- Type any text, hit Play
+- Rails proxies the request to ElevenLabs (`/with-timestamps`) keeping the API key server-side
+- Audio plays in the browser via Web Audio API
+- Each word lights up in sync as it is spoken (driven by ElevenLabs character-level timestamps)
+- A real-time waveform animates from the audio frequency data
+
+**Requires:** `ELEVENLABS_API_KEY` set in `config/application.yml`. Optionally set `ELEVENLABS_VOICE_ID` to use a different voice (defaults to Rachel).
+
+**Implementation files:**
+```
+app/controllers/dev/text_to_speech_controller.rb   # Rails proxy to ElevenLabs API
+app/views/dev/text_to_speech/show.html.erb          # Prototype UI
+app/frontend/javascript/controllers/tts_controller.js  # Stimulus: audio + word sync + waveform
+```
 
 ---
 

@@ -12,10 +12,12 @@
 # Get yours at https://console.anthropic.com/settings/keys
 ANTHROPIC_API_KEY: "REPLACE_ME"
 
-# ── Voice / TTS (ElevenLabs — Stage 3) ─────────────────────────────────────────
-# ElevenLabs API key — used for text-to-speech during the AI interview stage.
+# ── Voice / TTS (ElevenLabs — Stage 2 + dev prototype) ─────────────────────────
+# ElevenLabs API key — required for /dev/text_to_speech prototype and Stage 2 voice output.
 # Get yours at https://elevenlabs.io/app/settings/api-keys
 ELEVENLABS_API_KEY: "REPLACE_ME"
+# Voice ID — browse options at https://elevenlabs.io/app/voice-library
+ELEVENLABS_VOICE_ID: "EXAVITQu4vr4xnSDxMaL" # free tier
 
 # ── Environment-specific overrides ─────────────────────────────────────────────
 # Uncomment and set production values in your deployment environment.
