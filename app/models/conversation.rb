@@ -10,11 +10,11 @@ class Conversation < ApplicationRecord
 
   # Marks the interview as successfully completed.
   def complete!
-    update!(state: 'completed', completed_at: Time.current)
+    update!(state: "completed", completed_at: Time.current)
   end
 
   # Marks the interview as failed (failure threshold reached).
   def fail!
-    update!(state: 'failed', completed_at: Time.current)
+    update!(state: "failed", completed_at: Time.current)
   end
 end

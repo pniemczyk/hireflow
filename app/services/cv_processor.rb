@@ -23,10 +23,10 @@ class CvProcessor
   # @raise [CvProcessor::Error] when extraction fails
   def call
     blob = @candidate.cv_file.blob
-    raise Error, 'No attached file' unless blob
+    raise Error, "No attached file" unless blob
 
     case blob.content_type
-    when 'application/pdf'
+    when "application/pdf"
       extract_pdf(blob)
     else
       read_text(blob)
@@ -39,7 +39,7 @@ class CvProcessor
 
   # Plain text / Markdown — just read the bytes.
   def read_text(blob)
-    blob.download.force_encoding('UTF-8')
+    blob.download.force_encoding("UTF-8")
   end
 
   # Send the PDF to Claude and ask it to return Markdown.
@@ -51,22 +51,22 @@ class CvProcessor
     end
 
     response = client.messages.create(
-      model:      'claude-opus-4-6',
+      model:      "claude-opus-4-6",
       max_tokens: 4096,
       messages: [
         {
-          role:    'user',
+          role:    "user",
           content: [
             {
-              type:   'document',
+              type:   "document",
               source: {
-                type:         'base64',
-                media_type:   'application/pdf',
+                type:         "base64",
+                media_type:   "application/pdf",
                 data:         Base64.strict_encode64(bytes)
               }
             },
             {
-              type: 'text',
+              type: "text",
               text: <<~PROMPT
                 Convert the attached CV/résumé to clean Markdown.
 

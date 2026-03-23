@@ -1,0 +1,93 @@
+<% content_for :title, "Interview Result – #{@job.title}" %>
+
+<% accepted = @candidate.current_state == 'accepted' %>
+<% rejected  = @candidate.current_state == 'rejected' %>
+
+<div class="min-h-screen bg-surface text-on-surface font-body selection:bg-primary/30">
+
+  <%= render 'shared/topbar', progress_percent: 100,
+             stage_label: accepted ? 'Stage 2: AI Interview — Complete' : 'Application Reviewed' %>
+
+  <%# Background glow — green for pass, subtle blue/red otherwise %>
+  <div class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] rounded-full
+              blur-[120px] -z-10 pointer-events-none"
+       style="background: radial-gradient(circle, <%= accepted ? 'rgba(120,220,119,0.06)' : 'rgba(255,180,171,0.04)' %> 0%, transparent 70%)">
+  </div>
+
+  <main class="min-h-screen pt-32 pb-24 px-6 flex flex-col items-center justify-center">
+    <div class="w-full max-w-[600px] z-10 text-center">
+
+      <%# Icon %>
+      <% if accepted %>
+        <div class="inline-flex h-20 w-20 rounded-2xl bg-secondary-container/30 items-center justify-center mb-8
+                    shadow-[0_0_40px_rgba(120,220,119,0.15)]">
+          <i data-lucide="check-circle-2" class="w-9 h-9 text-secondary"></i>
+        </div>
+      <% elsif rejected %>
+        <div class="inline-flex h-20 w-20 rounded-2xl bg-error/10 items-center justify-center mb-8
+                    shadow-[0_0_40px_rgba(255,180,171,0.1)]">
+          <i data-lucide="x-circle" class="w-9 h-9 text-error"></i>
+        </div>
+      <% else %>
+        <div class="inline-flex h-20 w-20 rounded-2xl bg-primary/10 items-center justify-center mb-8
+                    shadow-[0_0_40px_rgba(158,202,255,0.1)]">
+          <i data-lucide="clock" class="w-9 h-9 text-primary"></i>
+        </div>
+      <% end %>
+
+      <%# Status badge %>
+      <div class="inline-flex items-center px-4 py-1 rounded-full bg-surface-container-low
+                  text-on-surface-variant text-xs font-medium tracking-widest uppercase mb-6">
+        <%= accepted ? 'Accepted' : rejected ? 'Application Reviewed' : 'Interview Completed' %>
+      </div>
+
+      <%# Headline %>
+      <h1 class="text-4xl md:text-5xl font-headline font-bold tracking-tight mb-4">
+        <% if accepted %>
+          You <span class="text-secondary">Passed</span>
+        <% elsif rejected %>
+          Thank You for <span class="text-on-surface">Your Time</span>
+        <% else %>
+          Interview <span class="text-primary">Recorded</span>
+        <% end %>
+      </h1>
+
+      <%# Body copy %>
+      <p class="text-on-surface-variant text-lg leading-relaxed mb-10 max-w-md mx-auto">
+        <% if accepted %>
+          Your interview was successful. A recruiter will be in touch with next steps for the
+          <strong class="text-on-surface"><%= @job.title %></strong> role.
+        <% elsif rejected %>
+          We appreciate you taking the time to interview for the
+          <strong class="text-on-surface"><%= @job.title %></strong> position.
+          We've kept your profile on file.
+        <% else %>
+          Your interview for <strong class="text-on-surface"><%= @job.title %></strong> has been completed.
+          A recruiter will review your answers and be in touch shortly.
+        <% end %>
+      </p>
+
+      <%# Interview summary card (if available) %>
+      <% if (summary = @candidate.interview_summary_hash) %>
+        <div class="bg-surface-container-low rounded-2xl p-6 text-left mb-8 space-y-4">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2 <%= summary[:overall] == 'pass' ? 'text-secondary' : 'text-error' %>">
+              <i data-lucide="<%= summary[:overall] == 'pass' ? 'check-circle-2' : 'x-circle' %>" class="w-4 h-4"></i>
+              <span class="text-sm font-medium capitalize"><%= summary[:overall] %></span>
+            </div>
+            <span class="text-2xl font-headline font-bold text-on-surface">
+              <%= summary[:score] %><span class="text-on-surface-variant text-sm font-body font-normal">/100</span>
+            </span>
+          </div>
+          <% if summary[:summary].present? %>
+            <p class="text-on-surface-variant text-sm leading-relaxed"><%= summary[:summary] %></p>
+          <% end %>
+        </div>
+      <% end %>
+
+    </div>
+  </main>
+
+  <div class="fixed bottom-0 left-0 w-full h-24 pointer-events-none z-0"
+       style="background: linear-gradient(to top, #131313, transparent)"></div>
+</div>

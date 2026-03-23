@@ -4,7 +4,7 @@ require "rails/test_help"
 require "webmock/minitest"
 require "minitest/reporters"
 
-Minitest::Reporters.use! [Minitest::Reporters::DefaultReporter.new(color: true)]
+Minitest::Reporters.use! [ Minitest::Reporters::DefaultReporter.new(color: true) ]
 
 WebMock.disable_net_connect!(allow_localhost: true)
 
@@ -27,7 +27,7 @@ module ActiveSupport
             id:           "msg_test",
             type:         "message",
             role:         "assistant",
-            content:      [{ type: "text", text: text }],
+            content:      [ { type: "text", text: text } ],
             model:        "claude-opus-4-6",
             stop_reason:  "end_turn",
             stop_sequence: nil,

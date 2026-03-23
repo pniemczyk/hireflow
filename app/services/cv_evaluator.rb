@@ -22,16 +22,16 @@ class CvEvaluator
   # @return [Hash] structured evaluation result
   # @raise [CvEvaluator::Error] when evaluation fails or response is unparseable
   def call
-    raise Error, 'No CV text to evaluate' if @candidate.cv_raw_text.blank?
+    raise Error, "No CV text to evaluate" if @candidate.cv_raw_text.blank?
 
     scenario = @candidate.job.scenario
-    raise Error, 'Job has no evaluation scenario' unless scenario
+    raise Error, "Job has no evaluation scenario" unless scenario
 
     response = client.messages.create(
-      model:      'claude-opus-4-6',
+      model:      "claude-opus-4-6",
       max_tokens: 2048,
       messages: [
-        { role: 'user', content: build_prompt(scenario.content, @candidate.cv_raw_text) }
+        { role: "user", content: build_prompt(scenario.content, @candidate.cv_raw_text) }
       ]
     )
 
@@ -73,7 +73,7 @@ class CvEvaluator
 
   def parse_response!(text)
     # Strip any accidental markdown fences Claude might add.
-    json_text = text.gsub(/\A```(?:json)?\s*/m, '').gsub(/\s*```\z/m, '').strip
+    json_text = text.gsub(/\A```(?:json)?\s*/m, "").gsub(/\s*```\z/m, "").strip
     result    = JSON.parse(json_text, symbolize_names: true)
 
     validate_result!(result)

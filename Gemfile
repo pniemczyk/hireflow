@@ -58,6 +58,7 @@ group :test do
   gem "minitest-reporters"
 end
 
+gem "turbo-rails"
 gem "vite_rails", "~> 3.10"
 gem "redcarpet", "~> 3.6"
 gem "anthropic", "~> 1.25"

@@ -5,6 +5,6 @@ module AnthropicClient
   private
 
   def client
-    @client ||= Anthropic::Client.new(api_key: ENV.fetch('ANTHROPIC_API_KEY'))
+    @client ||= Anthropic::Client.new(api_key: ENV.fetch("ANTHROPIC_API_KEY"))
   end
 end

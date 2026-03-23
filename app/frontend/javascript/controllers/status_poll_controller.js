@@ -32,7 +32,9 @@ export default class extends Controller {
 
       this.#update(data)
 
-      if (!data.done) {
+      if (data.redirect_url) {
+        Turbo.visit(data.redirect_url)
+      } else if (!data.done) {
         this.#timer = setTimeout(() => this.#poll(), this.intervalValue)
       }
     } catch (err) {

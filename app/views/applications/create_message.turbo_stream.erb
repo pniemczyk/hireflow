@@ -1,0 +1,10 @@
+<%= turbo_stream.append 'messages', partial: 'applications/candidate_message',
+                                                locals: { message: @candidate_message } %>
+<%= turbo_stream.append 'messages', partial: 'applications/ai_message',
+                                    locals:  { message: @ai_message, autoplay: true } %>
+<%= turbo_stream.replace 'interview-input', partial: 'applications/interview_input',
+                                            locals:  { candidate: @candidate } %>
+<% if @complete %>
+  <%= turbo_stream.replace 'interview-frame', partial: 'applications/interview_complete',
+                                              locals:  { candidate: @candidate } %>
+<% end %>
