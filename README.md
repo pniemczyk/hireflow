@@ -31,11 +31,19 @@ Every AI message is read aloud via ElevenLabs TTS with word-by-word highlighting
 
 ![Text to Speech](materials/screenshots/text_to_speech.png)
 
+#### Interview complete
+
+When all checklist items are resolved the inline summary card appears, showing score, pass/fail verdict, and written assessment alongside the full chat history.
+
+![AI Interview — Result with History](materials/screenshots/ai_interview_result_with_history.png)
+
 ---
 
 ### Stage 3 — Scored Summary
 
-After the interview completes the candidate sees their result inline, and the recruiter receives a scored summary with pass/fail verdict, written assessment, and identified red flags or strengths.
+After the interview the recruiter sees a full result page with score, overall verdict, written summary, and identified red flags or strengths.
+
+![Final Score](materials/screenshots/final_score.png)
 
 **Pass:**
 
