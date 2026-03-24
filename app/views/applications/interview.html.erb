@@ -1,5 +1,41 @@
 <% content_for :title, "AI Interview – #{@job.title}" %>
 
+<style>
+  /* ── Word highlighting ──────────────────────────────────────────────── */
+  .word-token {
+    transition: color 120ms ease, text-shadow 120ms ease;
+    color: rgba(229, 226, 225, 0.35);
+  }
+  .word-spoken  { color: rgba(229, 226, 225, 0.6); }
+  .word-current { color: #9ecaff; text-shadow: 0 0 16px rgba(158,202,255,0.6); font-weight: 600; }
+
+  /* ── Speak button icon visibility (driven by data-speech-state) ─────── */
+  .ai-speak-btn .speak-play,
+  .ai-speak-btn .speak-loading,
+  .ai-speak-btn .speak-pause,
+  .ai-speak-btn .speak-replay { display: none; }
+
+  /* Idle: dot visible; swap to play on hover */
+  .ai-speak-btn[data-speech-state="idle"]:hover .speak-idle-dot { display: none; }
+  .ai-speak-btn[data-speech-state="idle"]:hover .speak-play     { display: block; }
+
+  /* Loading */
+  .ai-speak-btn[data-speech-state="loading"] .speak-idle-dot { display: none; }
+  .ai-speak-btn[data-speech-state="loading"] .speak-loading  { display: block; }
+
+  /* Playing */
+  .ai-speak-btn[data-speech-state="playing"] .speak-idle-dot { display: none; }
+  .ai-speak-btn[data-speech-state="playing"] .speak-pause    { display: block; }
+
+  /* Paused */
+  .ai-speak-btn[data-speech-state="paused"] .speak-idle-dot { display: none; }
+  .ai-speak-btn[data-speech-state="paused"] .speak-replay   { display: block; }
+
+  /* Ended */
+  .ai-speak-btn[data-speech-state="ended"] .speak-idle-dot { display: none; }
+  .ai-speak-btn[data-speech-state="ended"] .speak-replay   { display: block; }
+</style>
+
 <div class="min-h-screen bg-surface text-on-surface font-body selection:bg-primary/30"
      data-controller="interview"
      data-interview-synthesize-url-value="<%= tts_synthesize_path %>">
@@ -31,15 +67,17 @@
 
       <%# Message thread %>
       <div id="messages" class="flex flex-col gap-6 mb-6">
-        <% @messages.each_with_index do |message, idx| %>
-          <% last_ai = message.role == 'ai' && idx == @messages.size - 1 %>
+        <% @messages.each do |message| %>
           <% if message.role == 'ai' %>
-            <%= render 'ai_message', message: message, autoplay: last_ai %>
+            <%= render 'ai_message', message: message %>
           <% else %>
             <%= render 'candidate_message', message: message %>
           <% end %>
         <% end %>
       </div>
+
+      <%# Completion card — replaced by Turbo Stream when interview finishes %>
+      <div id="interview-frame"></div>
 
       <div id="interview-error"></div>
     </div>

@@ -52,7 +52,7 @@ These are the tasks to be completed for the spec detailed in @.agent-os/specs/20
   - [x] 6.2 Create message bubble partials: `_ai_message.html.erb` and `_candidate_message.html.erb`
   - [x] 6.3 Create `applications/result.html.erb` (thank-you / pass / rejection screen)
   - [x] 6.4 Create `interview_controller.js` Stimulus controller (submit on Enter, loading state, scroll to bottom)
-  - [x] 6.5 Wire TTS auto-play on new AI messages: MutationObserver in interview_controller.js plays speech on appended AI messages
+  - [x] 6.5 Wire TTS click-to-play on AI messages: per-message state machine (idle/loading/playing/paused/ended) with word highlighting
   - [ ] 6.6 Smoke-test full candidate flow in browser: CV upload → eval → interview → completion
 
 - [ ] 7. Final verification

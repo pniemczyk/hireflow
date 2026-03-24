@@ -1,19 +1,50 @@
 <div id="interview-frame" class="flex flex-col items-center text-center py-16 gap-6">
-  <div class="w-16 h-16 rounded-2xl bg-secondary-container/30 flex items-center justify-center
-              shadow-[0_0_40px_rgba(120,220,119,0.15)]">
-    <i data-lucide="check-circle-2" class="w-8 h-8 text-secondary"></i>
+
+  <% summary = candidate.interview_summary_hash %>
+  <% passed  = summary&.dig(:overall) == 'pass' %>
+
+  <%# Icon %>
+  <div class="w-16 h-16 rounded-2xl flex items-center justify-center
+              <%= passed ? 'bg-secondary-container/30 shadow-[0_0_40px_rgba(120,220,119,0.15)]'
+                         : 'bg-error/10 shadow-[0_0_40px_rgba(255,180,171,0.1)]' %>">
+    <i data-lucide="<%= passed ? 'check-circle-2' : 'clipboard-check' %>"
+       class="w-8 h-8 <%= passed ? 'text-secondary' : 'text-primary' %>"></i>
   </div>
 
   <div>
-    <h2 class="text-2xl font-headline font-bold text-on-surface tracking-tight mb-2">Interview Complete</h2>
-    <p class="text-on-surface-variant leading-relaxed">
-      Thank you for your time. Your answers have been recorded.
+    <h2 class="text-2xl font-headline font-bold text-on-surface tracking-tight mb-2">
+      Interview Complete
+    </h2>
+    <p class="text-on-surface-variant leading-relaxed max-w-sm mx-auto">
+      Thank you for your time. Your answers have been recorded and assessed.
     </p>
   </div>
+
+  <%# Inline summary card %>
+  <% if summary %>
+    <div class="bg-surface-container-low rounded-2xl p-6 text-left w-full max-w-md space-y-3
+                border border-outline-variant/10">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2 <%= passed ? 'text-secondary' : 'text-error' %>">
+          <i data-lucide="<%= passed ? 'check-circle-2' : 'x-circle' %>" class="w-4 h-4"></i>
+          <span class="text-sm font-semibold capitalize"><%= summary[:overall] %></span>
+        </div>
+        <span class="text-2xl font-headline font-bold text-on-surface">
+          <%= summary[:score] %><span class="text-on-surface-variant text-sm font-body font-normal">/100</span>
+        </span>
+      </div>
+
+      <% if summary[:summary].present? %>
+        <p class="text-on-surface-variant text-sm leading-relaxed border-t border-outline-variant/10 pt-3">
+          <%= summary[:summary] %>
+        </p>
+      <% end %>
+    </div>
+  <% end %>
 
   <%= link_to job_application_result_path(candidate.job, candidate_id: candidate.id),
               class: 'inline-flex items-center gap-2 px-6 py-3 bg-primary text-on-primary rounded-full
                       font-medium text-sm hover:scale-105 active:scale-95 transition-all duration-200' do %>
-    View Result <i data-lucide="arrow-right" class="w-4 h-4"></i>
+    View Full Result <i data-lucide="arrow-right" class="w-4 h-4"></i>
   <% end %>
 </div>

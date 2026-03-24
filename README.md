@@ -9,6 +9,44 @@ See [`IDEA.md`](./IDEA.md) for the original product spec, data model, and planne
 
 ---
 
+## Pipeline screenshots
+
+### Stage 1 — CV Upload
+
+Candidate submits their name, email, and CV file. The system extracts and evaluates the CV against the job's scenario.
+
+![CV Upload](materials/screenshots/cv_upload.png)
+
+---
+
+### Stage 2 — AI Interview
+
+An adaptive, checklist-driven interview conducted by the AI agent. Questions are generated dynamically based on CV gaps and scenario requirements.
+
+![AI Interview](materials/screenshots/ai_interview.png)
+
+#### Text-to-speech
+
+Every AI message is read aloud via ElevenLabs TTS with word-by-word highlighting. Click the avatar button to play, pause, or replay. Use the mic button for speech-to-text dictation.
+
+![Text to Speech](materials/screenshots/text_to_speech.png)
+
+---
+
+### Stage 3 — Scored Summary
+
+After the interview completes the candidate sees their result inline, and the recruiter receives a scored summary with pass/fail verdict, written assessment, and identified red flags or strengths.
+
+**Pass:**
+
+![Result — Pass](materials/screenshots/cv_received_success.png)
+
+**Fail / needs review:**
+
+![Result — Fail](materials/screenshots/cv_received_failure.png)
+
+---
+
 ## Quick start
 
 ```bash
@@ -174,6 +212,23 @@ app/frontend/javascript/controllers/tts_controller.js  # Stimulus: audio + word 
 - **PDF extraction uses Claude** — plain text/Markdown files are read directly with no API call.
 - **The Scenario document drives all evaluation logic** — to change how candidates are scored, edit the scenario in `db/seeds.rb` (or via Rails console) and re-seed. No code changes needed.
 - **Mocking and stubbing are fine** — tests stub Anthropic at the HTTP level. Partial implementations and TODO stubs are acceptable in this codebase.
+
+---
+
+## License & Usage
+
+This project is free to use for personal and commercial purposes.
+
+You are welcome to use, modify, and build upon this project. However, if any part of this project (code, idea, architecture, or concept) is used in another project, proper attribution is required.
+
+Attribution should include:
+- Mentioning the original author (Paweł Niemczyk)
+- Providing a link to the source repository: https://github.com/pniemczyk/hireflow
+
+Example attribution:
+> Based on or inspired by Hireflow by Paweł Niemczyk — https://github.com/pniemczyk/hireflow
+
+Failure to provide attribution is not permitted under these terms.
 
 ---
 

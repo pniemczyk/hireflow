@@ -1,10 +1,17 @@
 <%= turbo_stream.append 'messages', partial: 'applications/candidate_message',
-                                                locals: { message: @candidate_message } %>
+                                    locals: { message: @candidate_message } %>
 <%= turbo_stream.append 'messages', partial: 'applications/ai_message',
-                                    locals:  { message: @ai_message, autoplay: true } %>
-<%= turbo_stream.replace 'interview-input', partial: 'applications/interview_input',
-                                            locals:  { candidate: @candidate } %>
+                                    locals: { message: @ai_message } %>
 <% if @complete %>
-  <%= turbo_stream.replace 'interview-frame', partial: 'applications/interview_complete',
-                                              locals:  { candidate: @candidate } %>
+  <%# Hide the input area and show the completion summary card %>
+  <%= turbo_stream.replace 'interview-input' do %>
+    <div id="interview-input"></div>
+  <% end %>
+  <%= turbo_stream.replace 'interview-frame',
+      partial: 'applications/interview_complete',
+      locals:  { candidate: @candidate } %>
+<% else %>
+  <%= turbo_stream.replace 'interview-input',
+      partial: 'applications/interview_input',
+      locals:  { candidate: @candidate } %>
 <% end %>
