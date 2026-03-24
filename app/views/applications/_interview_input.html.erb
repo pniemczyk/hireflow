@@ -33,7 +33,12 @@
                 data-interview-target="micBtn"
                 data-action="click->interview#toggleMic"
                 aria-label="Dictate answer">
-          <i data-lucide="mic" class="w-4 h-4" data-interview-target="micIcon"></i>
+          <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-interview-target="micIcon">
+            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+            <line x1="12" y1="19" x2="12" y2="23"/>
+            <line x1="8" y1="23" x2="16" y2="23"/>
+          </svg>
           <span class="hidden w-2 h-2 rounded-full bg-red-400 animate-pulse" data-interview-target="micDot"></span>
         </button>
 
@@ -43,7 +48,10 @@
                        hover:scale-105 active:scale-95 transition-all duration-200
                        disabled:opacity-40 disabled:pointer-events-none"
                 data-interview-target="submit">
-          <i data-lucide="arrow-up" class="w-4 h-4"></i>
+          <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="12" y1="19" x2="12" y2="5"/>
+            <polyline points="5 12 12 5 19 12"/>
+          </svg>
         </button>
       </div>
     </div>

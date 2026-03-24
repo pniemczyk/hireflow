@@ -12,13 +12,19 @@
           data-action="click->interview#toggleSpeech"
           aria-label="Play message">
     <div class="speak-idle-dot w-2 h-2 bg-primary rounded-full"></div>
-    <i data-lucide="play" class="speak-play w-4 h-4 text-primary"></i>
-    <svg class="speak-loading animate-spin w-4 h-4 text-primary" viewBox="0 0 24 24" fill="none">
+    <svg class="speak-play w-4 h-4 text-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polygon points="5 3 19 12 5 21 5 3"/>
+    </svg>
+    <svg class="speak-loading animate-spin w-4 h-4 text-primary" viewBox="0 0 24 24" fill="none" aria-hidden="true">
       <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
       <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
     </svg>
-    <i data-lucide="pause" class="speak-pause w-4 h-4 text-primary"></i>
-    <i data-lucide="rotate-ccw" class="speak-replay w-4 h-4 text-primary"></i>
+    <svg class="speak-pause w-4 h-4 text-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <line x1="6" y1="4" x2="6" y2="20"/><line x1="18" y1="4" x2="18" y2="20"/>
+    </svg>
+    <svg class="speak-replay w-4 h-4 text-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.48"/>
+    </svg>
   </button>
 
   <%# Bubble %>

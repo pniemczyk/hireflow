@@ -19,7 +19,11 @@
                      hover:bg-surface-bright hover:text-primary transition-all duration-200"
               data-action="click->topbar#openHelp"
               title="Help">
-        <i data-lucide="circle-help" class="w-5 h-5"></i>
+        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+          <line x1="12" y1="17" x2="12.01" y2="17"/>
+        </svg>
       </button>
 
       <%# Avatar + dropdown %>
@@ -29,7 +33,10 @@
                        hover:border-primary/60 transition-all duration-300 focus:outline-none"
                 data-action="click->topbar#toggleDropdown">
           <div class="w-full h-full bg-surface-container-high flex items-center justify-center">
-            <i data-lucide="user-round" class="w-4 h-4 text-on-surface-variant"></i>
+            <svg class="w-4 h-4 text-on-surface-variant" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="8" r="5"/>
+              <path d="M20 21a8 8 0 1 0-16 0"/>
+            </svg>
           </div>
         </button>
 
@@ -46,13 +53,20 @@
             <a href="#"
                class="flex items-center gap-3 px-4 py-2.5 text-sm text-on-surface-variant
                       hover:bg-surface-bright hover:text-on-surface transition-colors">
-              <i data-lucide="settings" class="w-4 h-4"></i>
+              <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
               Settings
             </a>
             <a href="#"
                class="flex items-center gap-3 px-4 py-2.5 text-sm text-error/80
                       hover:bg-error/10 hover:text-error transition-colors">
-              <i data-lucide="log-out" class="w-4 h-4"></i>
+              <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                <polyline points="16 17 21 12 16 7"/>
+                <line x1="21" y1="12" x2="9" y2="12"/>
+              </svg>
               Log out
             </a>
           </nav>
@@ -102,7 +116,10 @@
               class="w-9 h-9 flex items-center justify-center rounded-full text-on-surface-variant
                      hover:bg-surface-bright hover:text-on-surface transition-all"
               data-action="click->topbar#closeHelp">
-        <i data-lucide="x" class="w-5 h-5"></i>
+        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
       </button>
     </div>
 
@@ -111,7 +128,11 @@
 
       <div class="flex gap-4">
         <div class="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-          <i data-lucide="type" class="w-4 h-4 text-primary"></i>
+          <svg class="w-4 h-4 text-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="4 7 4 4 20 4 20 7"/>
+            <line x1="9" y1="20" x2="15" y2="20"/>
+            <line x1="12" y1="4" x2="12" y2="20"/>
+          </svg>
         </div>
         <div>
           <p class="text-on-surface font-medium text-sm mb-1">Paste your CV text</p>
@@ -124,7 +145,11 @@
 
       <div class="flex gap-4">
         <div class="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-          <i data-lucide="upload-cloud" class="w-4 h-4 text-primary"></i>
+          <svg class="w-4 h-4 text-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="16 16 12 12 8 16"/>
+            <line x1="12" y1="12" x2="12" y2="21"/>
+            <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/>
+          </svg>
         </div>
         <div>
           <p class="text-on-surface font-medium text-sm mb-1">Upload a file</p>
@@ -137,7 +162,18 @@
 
       <div class="flex gap-4">
         <div class="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-          <i data-lucide="cpu" class="w-4 h-4 text-primary"></i>
+          <svg class="w-4 h-4 text-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="4" y="4" width="16" height="16" rx="2"/>
+            <rect x="9" y="9" width="6" height="6"/>
+            <line x1="9" y1="1" x2="9" y2="4"/>
+            <line x1="15" y1="1" x2="15" y2="4"/>
+            <line x1="9" y1="20" x2="9" y2="23"/>
+            <line x1="15" y1="20" x2="15" y2="23"/>
+            <line x1="20" y1="9" x2="23" y2="9"/>
+            <line x1="20" y1="14" x2="23" y2="14"/>
+            <line x1="1" y1="9" x2="4" y2="9"/>
+            <line x1="1" y1="14" x2="4" y2="14"/>
+          </svg>
         </div>
         <div>
           <p class="text-on-surface font-medium text-sm mb-1">What happens next</p>
