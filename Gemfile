@@ -61,7 +61,7 @@ end
 gem "turbo-rails"
 gem "vite_rails", "~> 3.10"
 gem "redcarpet", "~> 3.6"
-gem "anthropic", "~> 1.25"
+gem "anthropic", "~> 1.28"
 gem "pdf-reader", "~> 2.0"
 gem "figaro"
 gem "statesman_scaffold"
