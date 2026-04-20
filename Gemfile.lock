@@ -80,7 +80,7 @@ GEM
       public_suffix (>= 2.0.2, < 8.0)
     afm (1.0.0)
     ansi (1.5.0)
-    anthropic (1.25.0)
+    anthropic (1.35.0)
       cgi
       connection_pool
     ast (2.4.3)
@@ -437,7 +437,7 @@ PLATFORMS
   x86_64-linux-musl
 
 DEPENDENCIES
-  anthropic (~> 1.25)
+  anthropic (~> 1.35)
   bootsnap
   brakeman
   bundler-audit
@@ -483,7 +483,7 @@ CHECKSUMS
   addressable (2.8.9) sha256=cc154fcbe689711808a43601dee7b980238ce54368d23e127421753e46895485
   afm (1.0.0) sha256=5bd4d6f6241e7014ef090985ec6f4c3e9745f6de0828ddd58bc1efdd138f4545
   ansi (1.5.0) sha256=5408253274e33d9d27d4a98c46d2998266fd51cba58a7eb9d08f50e57ed23592
-  anthropic (1.25.0) sha256=263ec37d38e2de51e056eb1ce2e17f80fa6a329865432cc82e1efff25e71d17b
+  anthropic (1.35.0) sha256=a99ff2cfc3109e17c747d6b8ce810754b9af797a07d6ecd4d21c6321798b7abf
   ast (2.4.3) sha256=954615157c1d6a382bc27d690d973195e79db7f55e9765ac7c481c60bdb4d383
   base64 (0.3.0) sha256=27337aeabad6ffae05c265c450490628ef3ebd4b67be58257393227588f5a97b
   bcrypt_pbkdf (1.1.2) sha256=c2414c23ce66869b3eb9f643d6a3374d8322dfb5078125c82792304c10b94cf6
