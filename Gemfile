@@ -59,7 +59,7 @@ group :test do
 end
 
 gem "turbo-rails"
-gem "vite_rails", "~> 3.10"
+gem "vite_rails", "~> 3.11"
 gem "redcarpet", "~> 3.6"
 gem "anthropic", "~> 1.25"
 gem "pdf-reader", "~> 2.0"
